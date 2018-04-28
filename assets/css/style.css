@@ -1,0 +1,9 @@
+body {
+    background-image: url(../images/background_image2.jpg);
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.jumbotron {
+    margin: 35px 200px;
+    padding: 16px 32px;
+}
