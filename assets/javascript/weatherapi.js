@@ -6,16 +6,16 @@ $.ajax({
     url: queryURL,
     method: "GET"
 })
-    .then(function (weatherFetch) {
+    .then(function (weatherAPIFetch) {
         
         console.log(queryURL);
-        console.log(weatherFetch);
+        console.log(weatherAPIFetch);
 
         //$(".city").html("<h1>" + response.name + " Weather Details</h1>");
-        $("#temp").text(weatherFetch.main.temp);
-        $("#condition").text(weatherFetch.weather[0].main);
+        $("#weatherAPITemp").text(weatherAPIFetch.main.temp);
+        $("#weatherAPICondition").text(weatherAPIFetch.weather[0].main);
         //ICON
 
-        console.log("Temperature (F): " + weatherFetch.main.temp);
-        console.log("Current Condition: ") + weatherFetch.weather[0].main;
+        console.log("Temperature (F): " + weatherAPIFetch.main.temp);
+        console.log("Current Condition: ") + weatherAPIFetch.weather[0].main;
     });
