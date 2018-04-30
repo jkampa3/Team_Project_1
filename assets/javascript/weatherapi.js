@@ -11,7 +11,6 @@ $.ajax({
         console.log(queryURL);
         console.log(weatherAPIResponse);
 
-        //$(".city").html("<h1>" + response.name + " Weather Details</h1>");
         $("#weatherAPITemp").text(weatherAPIResponse.main.temp);
         $("#weatherAPICondition").text(weatherAPIResponse.weather[0].main);
         $("#weatherAPIIcon").html('<img src="http://openweathermap.org/img/w/' + weatherAPIResponse.weather[0].icon + '.png">');
