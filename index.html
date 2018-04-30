@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Night Out</title>
+    <title>A Night Out</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
@@ -25,7 +25,7 @@
     <header>
 
         <div class="jumbotron">
-            <h1 class="display-4">Night Out</h1>
+            <h1 class="display-4">A Night Out</h1>
             <hr class="my-4">
             <p>Let Us Help Plan A Night Out</p>
         </div>
@@ -36,8 +36,10 @@
 
         <div class="row">
             <div class="col-md-5 offset-md-3" id="weatherAPIID">
-                Current Temperature: <span id="weatherAPITemp"></span> 
-                Current Condition: <span id="weatherAPICondition"></span>
+                Current Temperature:
+                <span id="weatherAPITemp"></span>
+                Current Condition:
+                <span id="weatherAPICondition"></span>
                 <span id="weatherAPIIcon"></span>
             </div>
             <div class="col-md-2 offset-md-2" id="currentTimeDate">
@@ -82,41 +84,61 @@
     </div>
 
     <!--modal call-->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Night Out</h5>
+                    <h5 class="modal-title" id="modalLabel">A Night Out. Please Select Below To Begin Search:</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="form-group">
-                            <label for="formGroupExampleInput">City or Zip Code</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Minneapolis or 55401">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="formCityZipInput">City or Zip Code</label>
+                                <input type="text" class="form-control" id="formCityZipInput" placeholder="Minneapolis or 55401">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="inputState">Distance</label>
-                            <select id="inputState" class="form-control">
-                                <option>5mi</option>
-                                <option selected>10mi</option>
-                                <option>15mi</option>
-                                <option>20mi</option>
-                            </select>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="formDistanceInput">Distance</label>
+                                <select id="formDistanceInput" class="form-control">
+                                    <option>5mi</option>
+                                    <option selected>10mi</option>
+                                    <option>15mi</option>
+                                    <option>20mi</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">
-                                Resturant
-                            </label>
+                        <div class="form-row">
+                            <div class="form-check col-md-5 offset-md-1">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Resturant
+                                </label>
+                            </div>
+                            <div class="form-check col-md-6">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                                <label class="form-check-label" for="defaultCheck2">
+                                    Music
+                                </label>
+                            </div>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                            <label class="form-check-label" for="defaultCheck2">
-                                Music
-                            </label>
+                        <div class="form-row">
+                            <div class="form-check col-md-5 offset-md-1">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Gas Station
+                                </label>
+                            </div>
+                            <div class="form-check col-md-6">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Dance
+                                </label>
+                            </div>
                         </div>
                     </form>
                 </div>
