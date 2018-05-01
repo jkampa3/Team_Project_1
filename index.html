@@ -56,7 +56,7 @@
         <div class="row">
             <div class="col-md-3">
                 <p>
-                    TOP 5 - RESTURANTS
+                    TOP 5 - restaurantS
                 </p>
             </div>
             <div class="col-md-3">
@@ -112,32 +112,34 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-check col-md-5 offset-md-1">
-                                <input class="form-check-input" type="checkbox" value="" id="formResturantCheckbox">
-                                <label class="form-check-label" for="formResturantCheckbox">
-                                    Resturant
-                                </label>
+                        <div class="checkboxChoices">
+                            <div class="form-row">
+                                <div class="form-check col-md-5 offset-md-1">
+                                    <input class="form-check-input" type="checkbox" value="restaurant" id="formrestaurantCheckbox">
+                                    <label class="form-check-label" for="formrestaurantCheckbox">
+                                        Restaurant
+                                    </label>
+                                </div>
+                                <div class="form-check col-md-6">
+                                    <input class="form-check-input" type="checkbox" value="bar" id="formBarCheckbox">
+                                    <label class="form-check-label" for="formBarCheckbox">
+                                        Bar
+                                    </label>
+                                </div>
                             </div>
-                            <div class="form-check col-md-6">
-                                <input class="form-check-input" type="checkbox" value="" id="formBarCheckbox">
-                                <label class="form-check-label" for="formBarCheckbox">
-                                    Bar
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-check col-md-5 offset-md-1">
-                                <input class="form-check-input" type="checkbox" value="" id="formGasCheckbox">
-                                <label class="form-check-label" for="formGasCheckbox">
-                                    Gas Station
-                                </label>
-                            </div>
-                            <div class="form-check col-md-6">
-                                <input class="form-check-input" type="checkbox" value="" id="formParkingCheckbox">
-                                <label class="form-check-label" for="formParkingCheckbox">
-                                    Parking
-                                </label>
+                            <div class="form-row">
+                                <div class="form-check col-md-5 offset-md-1">
+                                    <input class="form-check-input" type="checkbox" value="gas station" id="formGasCheckbox">
+                                    <label class="form-check-label" for="formGasCheckbox">
+                                        Gas Station
+                                    </label>
+                                </div>
+                                <div class="form-check col-md-6">
+                                    <input class="form-check-input" type="checkbox" value="parking" id="formParkingCheckbox">
+                                    <label class="form-check-label" for="formParkingCheckbox">
+                                        Parking
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -152,8 +154,8 @@
 
 </body>
 
-<script src="assets/javascript/script.js"></script>
 <script src="assets/javascript/weatherapi.js"></script>
 <script src="assets/javascript/firebase.js"></script>
+<script src="assets/javascript/script.js"></script>
 
 </html>
