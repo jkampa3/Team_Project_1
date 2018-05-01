@@ -1,7 +1,14 @@
-//modal caller
+//modal call function
 
 $(document).ready(function () {
     $("#myModal").modal();
+});
+
+//modal submit function
+
+$("#modalSummitButton").on("click", function(e) {
+    e.preventDefault();
+    $('#myModal').modal('hide');
 });
 
 
