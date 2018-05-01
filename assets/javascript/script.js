@@ -9,7 +9,22 @@ $(document).ready(function () {
 $("#modalSummitButton").on("click", function(e) {
     e.preventDefault();
     $('#myModal').modal('hide');
+    dumpInArray();
 });
+
+
+//checkbox array for Google Search
+
+function dumpInArray(){
+    var arr = [];
+    $('.checkboxChoices input[type="checkbox"]:checked').each(function(){
+       arr.push($(this).val());
+    }); 
+    console.log(arr);
+    return arr;
+ }
+
+
 
 
 //momentJS
