@@ -12,23 +12,34 @@ firebase.initializeApp(config);
 //variable
 var database = firebase.database();
 var userSearchLocation = "";
+var userSearchDistance = "";
+var userSearchSeletions = [];
 
 $("#modalSummitButton").on("click", function (event) {
 
     event.preventDefault();
 
     userSearchLocation = $("#formCityZipInput").val().trim();
+    userSearchDistance = $("#formDistanceInput").val().trim();
+    //userSearchSeletions = $('.checkboxChoices input[type="checkbox"]:checked').each(function () {
+    //     userSearchSeletions.push($(this).val());
+    // });
 
     database.ref().push({
-        location: userSearchLocation
+        location: userSearchLocation,
+        distance: userSearchDistance,
+        //selection: userSearchSeletions,
+        dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
 
 });
 
-database.ref().on("child_added", function (childSnapshot, prevChildKey) {
+database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function (snapshot) {
 
-    var userSearchLocation = childSnapshot.val().location;
+    var latestEntry = snapshot.val();
 
-    console.log(userSearchLocation);
+    console.log(latestEntry.location);
+    console.log(latestEntry.distance);
+    //Selection
 
 });
