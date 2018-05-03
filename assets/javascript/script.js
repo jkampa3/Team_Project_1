@@ -10,6 +10,7 @@ $("#modalSummitButton").on("click", function (e) {
     e.preventDefault();
     $('#myModal').modal('hide');
     dumpInArray();
+    weatherAPICall()
 });
 
 
