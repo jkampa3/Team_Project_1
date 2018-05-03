@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 //modal submit function
 
-$("#modalSummitButton").on("click", function(e) {
+$("#modalSummitButton").on("click", function (e) {
     e.preventDefault();
     $('#myModal').modal('hide');
     dumpInArray();
@@ -15,14 +15,14 @@ $("#modalSummitButton").on("click", function(e) {
 
 //checkbox array for Google Search
 
-function dumpInArray(){
+function dumpInArray() {
     var arr = [];
-    $('.checkboxChoices input[type="checkbox"]:checked').each(function(){
-       arr.push($(this).val());
-    }); 
+    $('.checkboxChoices input[type="checkbox"]:checked').each(function () {
+        arr.push($(this).val());
+    });
     console.log(arr);
     return arr;
- }
+}
 
 
 
