@@ -10,6 +10,7 @@
     <link rel="icon" href="assets/images/wineglass.jpg">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alice|Playfair+Display:400,900">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
     <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
@@ -18,6 +19,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
 </head>
 
@@ -36,26 +38,40 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-3">City Placeholder (onclick)</div>
+            <div class="col-md-3" id="searchedCity"></div>
             <div class="col-md-5" id="weatherAPIID">
-                Current Temperature:
+                Current Temperature (F):
                 <span id="weatherAPITemp"></span>
                 Current Condition:
                 <span id="weatherAPICondition"></span>
                 <span id="weatherAPIIcon"></span>
             </div>
-            <div class="col-md-2 offset-md-2" id="currentTimeDate">
-            </div>
+            <div class="col-md-2 offset-md-2" id="currentTimeDate"></div>
         </div>
 
         <div class="row">
             <div class="col-md-12">
-                <div id="map">
-                    MAP PLACEHOLDER
-                </div>
+                <div id="map"></div>
             </div>
         </div>
-        <div id="checked" class="row">
+
+        <div class="row">
+            <div class="col-md-12" id="firebaseLatestRecord">
+                <strong>Latest Search Results: </strong>
+                <span></span>
+                &nbsp;
+                <strong>City: </strong>
+                <span id="firebaseLocation"></span>
+                &nbsp;
+                <strong>Radius: </strong>
+                <span id="firebaseDistance"></span>
+                &nbsp;
+                <strong>Selections: </strong>
+                <span id="firebaseSelection"></span>
+            </div>
+        </div>
+
+        <div class="row" id="checked">
             <div id="restaurant" class="col-md">
                 <h6>TOP 5 - RESTAURANTS</h6>
             </div>
@@ -74,7 +90,7 @@
         </div>
         <div class="row">
             <div class="col-md-1 offset-md-11">
-                <button type="button" class="btn btn-light">Submit</button>
+                <button type="button" id="mapSub" class="btn btn-light">Submit</button>
             </div>
         </div>
 
@@ -102,10 +118,10 @@
                             <div class="form-group col-md-12">
                                 <label for="formDistanceInput">Radius</label>
                                 <select id="formDistanceInput" class="form-control">
-                                    <option>5 mi</option>
-                                    <option selected>10 mi</option>
-                                    <option>15 mi</option>
-                                    <option>20 mi</option>
+                                    <option value="50">5 mi</option>
+                                    <option value="100" selected>10 mi</option>
+                                    <option value="150">15 mi</option>
+                                    <option value="200">20 mi</option>
                                 </select>
                             </div>
                         </div>
@@ -162,6 +178,7 @@
 
 <script src="assets/javascript/weatherapi.js"></script>
 <script src="assets/javascript/firebase.js"></script>
+<script src="assets/javascript/momentjs.js"></script>
 <script src="assets/javascript/script.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAhNxc8BbsIMC5tFTNUSADF8vhSiNxXmA&libraries=places"></script>
 

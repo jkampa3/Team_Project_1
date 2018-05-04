@@ -1,5 +1,3 @@
-//modal call function
-
 $(document).ready(function () {
 
 	//variables
@@ -53,21 +51,6 @@ $(document).ready(function () {
 		mainProcess();
 	}
 
-	//momentJS
-	var datetime = null,
-		date = null;
-
-	var update = function () {
-		date = moment(new Date())
-		datetime.html(date.format('MMM Do YYYY, h:mm a'));
-	};
-
-	$(document).ready(function () {
-		datetime = $('#currentTimeDate')
-		update();
-		setInterval(update, 1000);
-	});
-
 	// When enters city & submits
 	function mainProcess() {
 
@@ -101,7 +84,7 @@ $(document).ready(function () {
 		});
 	};
 	// Initialyze google places call
-	function initMap(lats, lngs, classType, results) {
+	function initMap(lats, lngs, classType, name, address, rating) {
 
 		pyrmont = {
 			lat: ilat,
@@ -115,11 +98,16 @@ $(document).ready(function () {
 		if (typeof (lats) !== "undefined") {
 
 			for (var i = 0; i < lats.length; i++) {
+				var infoWindow = new google.maps.InfoWindow();
 
 				let ltln = {
 					lat: parseFloat(lats[i]),
 					lng: parseFloat(lngs[i])
 				}
+				var nameE = name[i];
+				var addressE = address[i];
+				var ratingE = rating[i];
+				var testing = 0
 				//adding the icons onto the map of each type
 				var classifications = classType[i];
 
@@ -136,20 +124,20 @@ $(document).ready(function () {
 				} else {
 					alert("no match");
 				}
+				var windowInfo = "<p><strong>Name:</strong> " + name[i] + "</p>" +
+					"<p><strong>Address:</strong> " + address[i] + "</p>" +
+					"<p><strong>Rating:</strong> " + rating[i] + "</p>";
 
 				var marker = new google.maps.Marker({
 					position: ltln,
 					map: map,
 					icon: imageicon
 				});
-				var infoWindow = new google.maps.InfoWindow({
-					content: '<a href="https://www.cowboys.com">Cowboys</a>'
-
-				});
-
 				marker.addListener('click', function () {
+					infoWindow.setContent(windowInfo);
 					infoWindow.open(map, marker);
 				});
+
 			}
 		}
 	}; //end of map
@@ -160,9 +148,9 @@ $(document).ready(function () {
 		var request = {
 			location: pyrmont,
 			radius: iradius,
-			type: [itype]
+			query: [itype]
 		}
-		service.nearbySearch(request, fecthrespFacory(itype));
+		service.textSearch(request, fecthrespFacory(itype));
 	}
 	// fetch response
 	function fecthrespFacory(itype) {
@@ -180,7 +168,7 @@ $(document).ready(function () {
 				for (var j = 0; j < results.length; j++) {
 					place_title = results[j].name;
 					place_id = results[j].place_id;
-					place_address = results[j].vicinity;
+					place_address = results[j].formatted_address;
 					place_lat = results[j].geometry.location.lat();
 					place_lng = results[j].geometry.location.lng();
 					place_rating = results[j].rating;
@@ -239,6 +227,9 @@ $(document).ready(function () {
 			let p = $("<p>");
 			let inp = $("<input>");
 			inp.attr("data-", "restaurant");
+			inp.attr("data-rating", obj[x].rating);
+			inp.attr("data-name", obj[x].title);
+			inp.attr("data-address", obj[x].address);
 			inp.attr("type", "checkbox");
 			inp.attr("class", "chkinpt");
 			inp.attr("data-lat", obj[x].lat);
@@ -256,6 +247,9 @@ $(document).ready(function () {
 			let p = $("<p>");
 			let inp = $("<input>");
 			inp.attr("data-", "bar");
+			inp.attr("data-rating", obj[x].rating);
+			inp.attr("data-name", obj[x].title);
+			inp.attr("data-address", obj[x].address);
 			inp.attr("type", "checkbox");
 			inp.attr("class", "chkinpt");
 			inp.attr("data-lat", obj[x].lat);
@@ -267,13 +261,15 @@ $(document).ready(function () {
 		}
 
 	}
-
 	function parkGen(obj) {
 		let count = 1;
 		for (var x = 0; x < 5; x++) {
 			let p = $("<p>");
 			let inp = $("<input>");
 			inp.attr("data-", "parking");
+			inp.attr("data-rating", obj[x].rating);
+			inp.attr("data-name", obj[x].title);
+			inp.attr("data-address", obj[x].address);
 			inp.attr("type", "checkbox");
 			inp.attr("class", "chkinpt");
 			inp.attr("data-lat", obj[x].lat);
@@ -282,17 +278,18 @@ $(document).ready(function () {
 			p.append(" " + count++ + ". " + obj[x].title);
 			p.attr("class", "col-sm results");
 			$("#parking").append(p);
-
 		}
 
 	}
-
 	function hotGen(obj) {
 		let count = 1;
 		for (var x = 0; x < 5; x++) {
 			let p = $("<p>");
 			let inp = $("<input>");
 			inp.attr("data-", "hotel");
+			inp.attr("data-rating", obj[x].rating);
+			inp.attr("data-name", obj[x].title);
+			inp.attr("data-address", obj[x].address);
 			inp.attr("type", "checkbox");
 			inp.attr("class", "chkinpt");
 			inp.attr("data-lat", obj[x].lat);
@@ -302,16 +299,19 @@ $(document).ready(function () {
 			p.attr("class", "col-sm results");
 			$("#hotel").append(p);
 		}
-
 	}
 
 	function gasGen(obj) {
+		console.log(obj, "gas object")
 		let count = 1;
 		let id = 0;
 		for (var x = 0; x < 5; x++) {
 			let p = $("<p>");
 			let inp = $("<input>");
 			inp.attr("data-", "gas");
+			inp.attr("data-rating", obj[x].rating);
+			inp.attr("data-name", obj[x].title);
+			inp.attr("data-address", obj[x].address);
 			inp.attr("type", "checkbox");
 			inp.attr("class", "chkinpt");
 			inp.attr("data-lat", obj[x].lat);
@@ -321,26 +321,37 @@ $(document).ready(function () {
 			p.attr("class", "col-sm results");
 			$("#gas").append(p);
 		}
-
 	}
 	$("#mapSub").on("click", function (e) {
 		e.preventDefault();
 		var lats = [];
 		var longs = [];
-		var classType = []
+		var classType = [];
+		var name = [];
+		var address = [];
+		var rating = [];
 		$('#checked input[type="checkbox"]:checked').each(function () {
 			lats.push($(this).attr("data-lat"));
 		});
 		$('#checked input[type="checkbox"]:checked').each(function () {
 			longs.push($(this).attr("data-lng"));
 		})
-		var classification = $('#checked input[type="checkbox"]:checked').each(function () {
+		$('#checked input[type="checkbox"]:checked').each(function () {
 			classType.push($(this).attr("data-"));
+		})
+		$('#checked input[type="checkbox"]:checked').each(function () {
+			name.push($(this).attr("data-name"));
+		})
+		$('#checked input[type="checkbox"]:checked').each(function () {
+			address.push($(this).attr("data-address"));
+		})
+		$('#checked input[type="checkbox"]:checked').each(function () {
+			rating.push($(this).attr("data-rating"));
 		})
 
 
 		if (lats.length > 0) {
-			initMap(lats, longs, classType, results);
+			initMap(lats, longs, classType, name, address, rating);
 		}
 	});
 
