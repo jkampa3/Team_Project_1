@@ -24,7 +24,7 @@ $(document).ready(function () {
 
 
 	//modal load function
-	$("#myModal").modal();
+	$("#myModalPageLoad").modal();
 
 	//modal submit function
 	$("#modalSummitButton").on("click", function (e) {
@@ -32,7 +32,7 @@ $(document).ready(function () {
 		let cty = $('#formCityZipInput').val()
 		let chckd = $('.checkboxChoices input[type="checkbox"]:checked');
 		if ((chckd.length > 0) && (cty)) {
-			$('#myModal').modal('hide');
+			$('#myModalPageLoad').modal('hide');
 			dumpInArray();
 		} else {
 			alert("Please enter a city name, and check at least (1) item.");
@@ -44,7 +44,7 @@ $(document).ready(function () {
 	//checkbox array for Google Search
 	function dumpInArray() {
 		$('.checkboxChoices input[type="checkbox"]:checked').each(function () {
-			$('#myModal').modal('hide');
+			$('#myModalPageLoad').modal('hide');
 			type.push($(this).val());
 		});
 		console.log(type);
