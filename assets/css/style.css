@@ -1,24 +1,102 @@
 body {
     background-image: url(../images/background_image2.jpg);
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Alice', serif;
+    font-size: 15px;
 }
 
+/*
 .jumbotron {
     margin: 16px 200px;
     padding: 16px 32px;
 }
+*/
 
 #map {
     height: 500px;
     width: 100%;
+    border: double;
 }
  
 .results {
-   
     color: rgb(92, 6, 25);
     font-size: 1em;
     font-weight: 900;
 }
+
+.modalPageLoadLabel {
+    font-weight: bold;
+}
+
+.topList {
+    border-right: groove;
+}
+
+#checked {
+    background-color: #efefef;
+}
+
+#informationLine {
+    background-color: #efefef;
+    align-content: center;
+}
+
+#firebaseLatestRecord {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    background-color: #efefef;
+    border: ridge;
+}
+
+.mt-md-2 h6 {
+    text-align: center;
+    font-weight: bold;
+}
+
+/*title*/
+.pageHeader {
+    position: relative;
+    font-weight: 300;
+    font-size: 4.5em;
+    color: #402d2d;
+  }
+  
+  .pageHeader .text-wrapper {
+    position: relative;
+    display: inline-block;
+    padding-top: 0.1em;
+    padding-right: 0.05em;
+    padding-bottom: 0.15em;
+    line-height: 1em;
+  }
+  
+  .pageHeader .line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 3px;
+    width: 100%;
+    background-color: #402d2d;
+    transform-origin: 0.5 0;
+  }
+  
+  .pageHeader .letters-center {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    width: 1em;
+    margin-right: -0.1em;
+    margin-left: -0.1em;
+  }
+  
+  .pageHeader .letters {
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+    opacity: 0;
+  }
+/*title end*/
+
 
 /*
 font-family: 'Alice', serif;

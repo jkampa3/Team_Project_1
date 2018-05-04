@@ -26,18 +26,28 @@
 <body>
 
     <header>
+        <!--Modified Code From http://tobiasahlin.com/-->
+        <h1 class="pageHeader">
+            <span class="text-wrapper">
+                <span class="line line1"></span>
+                <span class="letters letters">A Night Out</span>
+                <span class="line line2"></span>
+            </span>
+        </h1>
 
+        <!--
         <div class="jumbotron">
             <h1 class="display-4">A Night Out</h1>
             <hr class="my-4">
             <p>Let Us Help Plan A Night Out</p>
         </div>
+        -->
 
     </header>
 
     <div class="container">
 
-        <div class="row">
+        <div class="row" id="informationLine">
             <div class="col-md-3" id="searchedCity"></div>
             <div class="col-md-5" id="weatherAPIID">
                 Current Temperature (F):
@@ -48,15 +58,26 @@
             </div>
             <div class="col-md-2 offset-md-2" id="currentTimeDate"></div>
         </div>
-
+        <br>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-9 mb-4">
                 <div id="map"></div>
+            </div>
+            <div class="col-md-2 offset-md-1" id="firebaseLatestRecord">
+                <strong>Latest Search Results: </strong>
+                <br>
+                <br>
+                <strong>City:</strong>
+                <p id="firebaseLocation"></p>
+                <strong>Radius: </strong>
+                <p id="firebaseDistance"></p>
+                <strong>Selections: </strong>
+                <p id="firebaseSelection"></p>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-12" id="firebaseLatestRecord">
+        <!-- <div class="row">
+            <div class="col-md-12 mt-md-3" id="firebaseLatestRecord">
                 <strong>Latest Search Results: </strong>
                 <span></span>
                 &nbsp;
@@ -68,28 +89,28 @@
                 &nbsp;
                 <strong>Selections: </strong>
                 <span id="firebaseSelection"></span>
-            </div>
-        </div>
+            </div> 
+        </div> -->
 
         <div class="row" id="checked">
-            <div id="restaurant" class="col-md">
+            <div id="restaurant" class="col-md mt-md-2 topList">
                 <h6>TOP 5 - RESTAURANTS</h6>
             </div>
-            <div id="bars" class="col-md">
+            <div id="bars" class="col-md mt-md-2 topList">
                 <h6>TOP 5 - BARS</h6>
             </div>
-            <div id="gas" class="col-md">
+            <div id="gas" class="col-md mt-md-2 topList">
                 <h6> TOP 5 - GAS STATIONS </h6>
             </div>
-            <div id=parking class="col-md">
+            <div id=parking class="col-md mt-md-2 topList">
                 <h6>TOP 5 - PARKING </h6>
             </div>
-            <div id="hotel" class="col-md">
+            <div id="hotel" class="col-md mt-md-2 topList">
                 <h6> TOP 5 - HOTELS </h6>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-1 offset-md-11">
+            <div class="col-md-1 offset-md-11 mt-md-1">
                 <button type="button" id="mapSub" class="btn btn-light">Submit</button>
             </div>
         </div>
@@ -97,11 +118,11 @@
     </div>
 
     <!--modal call-->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModalPageLoad" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel">A Night Out. Please Select Below To Begin Search:</h5>
+                    <h5 class="modal-title" id="modalPageLoadLabel">Please Select Below To Begin Search:</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -179,6 +200,7 @@
 <script src="assets/javascript/weatherapi.js"></script>
 <script src="assets/javascript/firebase.js"></script>
 <script src="assets/javascript/momentjs.js"></script>
+<script src="assets/javascript/title.js"></script>
 <script src="assets/javascript/script.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAhNxc8BbsIMC5tFTNUSADF8vhSiNxXmA&libraries=places"></script>
 

@@ -43,7 +43,7 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
     $("#searchedCity").text(latestEntry.location);
 
     $("#firebaseLocation").text(latestEntry.location);
-    $("#firebaseDistance").text((latestEntry.distance)/10);
+    $("#firebaseDistance").text((latestEntry.distance) / 10);
     $("#firebaseSelection").text(latestEntry.selection);
 
 }, function (errorObject) {
