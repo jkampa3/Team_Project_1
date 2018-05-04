@@ -7,6 +7,7 @@
 
     <title>A Night Out</title>
 
+    <link rel="icon" href="assets/images/wineglass.jpg">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -49,31 +50,26 @@
 
         <div class="row">
             <div class="col-md-12">
-                <p>
+                <div id="map">
                     MAP PLACEHOLDER
-                </p>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-3">
-                <p>
-                    TOP 5 - restaurantS
-                </p>
+        <div id="checked" class="row">
+            <div id="restaurant" class="col-md">
+                <h6>TOP 5 - RESTAURANTS</h6>
             </div>
-            <div class="col-md-3">
-                <p>
-                    TOP 5 - BARS
-                </p>
+            <div id="bars" class="col-md">
+                <h6>TOP 5 - BARS</h6>
             </div>
-            <div class="col-md-3">
-                <p>
-                    TOP 5 - MUSIC
-                </p>
+            <div id="gas" class="col-md">
+                <h6> TOP 5 - GAS STATIONS </h6>
             </div>
-            <div class="col-md-3">
-                <p>
-                    TOP 5 - FAST FOOD
-                </p>
+            <div id=parking class="col-md">
+                <h6>TOP 5 - PARKING </h6>
+            </div>
+            <div id="hotel" class="col-md">
+                <h6> TOP 5 - HOTELS </h6>
             </div>
         </div>
         <div class="row">
@@ -104,41 +100,50 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label for="formDistanceInput">Distance</label>
+                                <label for="formDistanceInput">Radius</label>
                                 <select id="formDistanceInput" class="form-control">
-                                    <option>5mi</option>
-                                    <option selected>10mi</option>
-                                    <option>15mi</option>
-                                    <option>20mi</option>
+                                    <option>5 mi</option>
+                                    <option selected>10 mi</option>
+                                    <option>15 mi</option>
+                                    <option>20 mi</option>
                                 </select>
                             </div>
                         </div>
                         <div class="checkboxChoices">
                             <div class="form-row">
-                                <div class="form-check col-md-5 offset-md-1">
-                                    <input class="form-check-input" type="checkbox" value="restaurant" id="formrestaurantCheckbox">
+                                <div class="form-check col-md-4  offset-md-1">
+                                    <input class="form-check-input" type="checkbox" value="restaurants" id="formrestaurantCheckbox">
                                     <label class="form-check-label" for="formrestaurantCheckbox">
-                                        Restaurant
+                                        <img src="assets/images/restaurant.png"> Restaurants
                                     </label>
                                 </div>
-                                <div class="form-check col-md-6">
-                                    <input class="form-check-input" type="checkbox" value="bar" id="formBarCheckbox">
+
+                                <div class="form-check col-md-2">
+                                    <input class="form-check-input" type="checkbox" value="bars" id="formBarCheckbox">
                                     <label class="form-check-label" for="formBarCheckbox">
-                                        Bar
+                                        <img src="assets/images/bar.png"> Bars
                                     </label>
                                 </div>
+
+                                <div class="form-check col-md-3  offset-md-1 ">
+                                    <input class="form-check-input" type="checkbox" value="lodging" id="formBarCheckbox">
+                                    <label class="form-check-label" for="formBarCheckbox">
+                                        <img src="assets/images/lodging-2.png"> Hotels
+                                    </label>
+                                </div>
+
                             </div>
                             <div class="form-row">
-                                <div class="form-check col-md-5 offset-md-1">
-                                    <input class="form-check-input" type="checkbox" value="gas station" id="formGasCheckbox">
+                                <div class="form-check col-md-3 offset-md-3">
+                                    <input class="form-check-input" type="checkbox" value="gas_station" id="formGasCheckbox">
                                     <label class="form-check-label" for="formGasCheckbox">
-                                        Gas Station
+                                        <img src="assets/images/gas.png"> Gas
                                     </label>
                                 </div>
-                                <div class="form-check col-md-6">
+                                <div class="form-check col-md-5  offset-md-1">
                                     <input class="form-check-input" type="checkbox" value="parking" id="formParkingCheckbox">
                                     <label class="form-check-label" for="formParkingCheckbox">
-                                        Parking
+                                        <img src="assets/images/parking.png"> Parking
                                     </label>
                                 </div>
                             </div>
@@ -158,5 +163,6 @@
 <script src="assets/javascript/weatherapi.js"></script>
 <script src="assets/javascript/firebase.js"></script>
 <script src="assets/javascript/script.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAhNxc8BbsIMC5tFTNUSADF8vhSiNxXmA&libraries=places"></script>
 
 </html>
