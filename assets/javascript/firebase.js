@@ -36,18 +36,27 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
 
     var latestEntry = snapshot.val();
 
-    console.log(latestEntry.location);
-    console.log(latestEntry.distance);
-    console.log(latestEntry.selection);
+    //console.log(latestEntry.location);
+    //console.log(latestEntry.distance);
+    //console.log(latestEntry.selection);
+
+    $("#searchedCity").text(latestEntry.location);
+
+    $("#firebaseLocation").text(latestEntry.location);
+    $("#firebaseDistance").text((latestEntry.distance)/10);
+    $("#firebaseSelection").text(latestEntry.selection);
+
+}, function (errorObject) {
+    console.log("Errors handled: " + errorObject.code);
 
 });
 
 function array2StringFB() {
-    var userSearchSeletions = [];
+    var userSearchSeletionsArray = [];
     $('.checkboxChoices input[type="checkbox"]:checked').each(function () {
-        userSearchSeletions.push($(this).val());
+        userSearchSeletionsArray.push($(this).val());
     });
-    userSearchSeletions.toString();
-    //console.log("String: " + userSearchSeletions);
-    return userSearchSeletions;
+    userSearchSeletionsArray.toString();
+    //console.log("String: " + userSearchSeletionsArray.toString());
+    return userSearchSeletionsArray.toString();
 }
