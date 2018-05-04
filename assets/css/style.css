@@ -7,3 +7,15 @@ body {
     margin: 16px 200px;
     padding: 16px 32px;
 }
+
+#map {
+    height: 500px;
+    width: 100%;
+}
+ 
+.results {
+   
+    color: rgb(92, 6, 25);
+    font-size: 1em;
+    font-weight: 900;
+}
