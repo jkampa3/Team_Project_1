@@ -13,7 +13,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var userSearchLocation = "";
 var userSearchDistance = "";
-var userSearchSeletions = [];
+var userSearchSeletions = "";
 
 $("#modalSummitButton").on("click", function (event) {
 
@@ -21,14 +21,12 @@ $("#modalSummitButton").on("click", function (event) {
 
     userSearchLocation = $("#formCityZipInput").val().trim();
     userSearchDistance = $("#formDistanceInput").val().trim();
-    //userSearchSeletions = $('.checkboxChoices input[type="checkbox"]:checked').each(function () {
-    //     userSearchSeletions.push($(this).val());
-    // });
+    userSearchSeletions = array2StringFB();
 
     database.ref().push({
         location: userSearchLocation,
         distance: userSearchDistance,
-        //selection: userSearchSeletions,
+        selection: userSearchSeletions,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
 
@@ -40,6 +38,16 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
 
     console.log(latestEntry.location);
     console.log(latestEntry.distance);
-    //Selection
+    console.log(latestEntry.selection);
 
 });
+
+function array2StringFB() {
+    var userSearchSeletions = [];
+    $('.checkboxChoices input[type="checkbox"]:checked').each(function () {
+        userSearchSeletions.push($(this).val());
+    });
+    userSearchSeletions.toString();
+    //console.log("String: " + userSearchSeletions);
+    return userSearchSeletions;
+}
