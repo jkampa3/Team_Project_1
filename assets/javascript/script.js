@@ -33,10 +33,10 @@ $(document).ready(function () {
 	var placecontact = [];
 
 
-	//modal load function
+	//modal on page load function
 	$("#myModalPageLoad").modal();
 
-	//modal submit function
+	//modal form submit function
 	$("#modalSummitButton").on("click", function (e) {
 		e.preventDefault();
 		iradius = $("#formDistanceInput").val();
@@ -45,15 +45,52 @@ $(document).ready(function () {
 		if ((chckd.length > 0) && (cty)) {
 			$("#myModalPageLoad").modal('hide');
 			dumpInArray();
+			$("#mainPageID").removeClass("divHidden");
 		} else {
 			//alert("Please enter a city name, and check at least (1) item.");
 			$("#myModalAlert").modal('toggle');
-			$("#myModalAlert").addClass('animated zoomIn');
+			$("#myModalAlert").addClass("animated zoomIn");
 		}
 		weatherAPICall();
-		$("#mainPageID").removeClass("divHidden");
 	});
 
+	//modal form close function
+	$("#modalCloseButton").on("click", function (e) {
+		$("#myModalPageLoad").modal('hide');
+		$("#myModalPageLoad").addClass("animated fadeOutDownBig");
+		$("#myModalReload").modal('toggle');
+
+	});
+
+	//modal reload
+	$("#modalReloadButton").on("click", function (e) {
+		$("#myModalReload").modal('hide');
+		$("#myModalRelaod").addClass('animated fadeOutDownBig');
+		//idea here: reload page load modal
+		//current bug: show/toggle wasn't working, just reload page and modal goes by
+		//$("#myModalPageLoad").modal('show');
+		location.reload();
+	});
+
+	//close webpage
+	$("#modalReloadCloseButton").on("click", function (e) {
+		//current bug: works only half the time
+		window.close();
+	});
+
+	//search Reload
+	$("#searchReloadButton").on("click", function (e) {
+		//idea here: reload previous search:
+		//current bug: issue with .empty
+		//$("#mainPageID").addClass("divHidden");
+		//$("#restaurant").empty;
+		//$("#bars").empty;
+		//$("#gas").empty;
+		//$("#parking").empty;
+		//$("#hotel").empty;
+		//$("#myModalPageLoad").modal();
+		location.reload();
+	});
 
 	//checkbox array for Google Search
 	function dumpInArray() {
@@ -63,7 +100,7 @@ $(document).ready(function () {
 		});
 		console.log(type);
 		mainProcess();
-	}
+	};
 
 	// When enters city & submits
 	function mainProcess() {
@@ -178,7 +215,8 @@ $(document).ready(function () {
 			query: [itype]
 		}
 		service.textSearch(request, fecthrespFacory(itype));
-	}
+	};
+
 	// fetch response
 	function fecthrespFacory(itype) {
 		return function (results, status) {
@@ -261,7 +299,7 @@ $(document).ready(function () {
 				};
 			}
 		}
-	}
+	};
 
 	function restGen(obj) {
 		let count = 1;
@@ -282,7 +320,7 @@ $(document).ready(function () {
 			p.attr("class", "col-sm results");
 			$("#restaurant").append(p);
 		}
-	}
+	};
 
 	function barGen(obj) {
 		let count = 1;
@@ -304,7 +342,7 @@ $(document).ready(function () {
 			$("#bars").append(p);
 		}
 
-	}
+	};
 
 	function parkGen(obj) {
 		let count = 1;
@@ -326,7 +364,7 @@ $(document).ready(function () {
 			$("#parking").append(p);
 		}
 
-	}
+	};
 
 	function hotGen(obj) {
 		let count = 1;
@@ -347,7 +385,7 @@ $(document).ready(function () {
 			p.attr("class", "col-sm results");
 			$("#hotel").append(p);
 		}
-	}
+	};
 
 	function gasGen(obj) {
 		let count = 1;
@@ -369,7 +407,7 @@ $(document).ready(function () {
 			p.attr("class", "col-sm results");
 			$("#gas").append(p);
 		}
-	}
+	};
 
 	$("#mapSub").on("click", function (e) {
 		e.preventDefault();
@@ -411,6 +449,6 @@ $(document).ready(function () {
 				initMap(lats, longs, classType, name, address, rating, placeURL, placeimg, placecontact);
 			}
 		}
-	}
+	};
 
 });
