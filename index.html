@@ -37,7 +37,7 @@
             </span>
         </h1>
 
-        <!--
+        <!--Old Jumbotron
         <div class="jumbotron">
             <h1 class="display-4">A Night Out</h1>
             <hr class="my-4">
@@ -50,6 +50,7 @@
     <div class="container divHidden" id="mainPageID">
 
         <br>
+        <!--Infobar (Removed City Display)-->
         <div class="row" id="informationLine">
             <div class="col-md-3" id="searchedCity"></div>
             <div class="col-md-5" id="weatherAPIID">
@@ -66,6 +67,7 @@
             <div class="col-md-9 mb-4">
                 <div id="map"></div>
             </div>
+            <!--Firebase Pull Back-->
             <div class="col-md-2 offset-md-1" id="firebaseLatestRecord">
                 <strong>Latest Search Results: </strong>
                 <br>
@@ -83,7 +85,8 @@
             </div>
         </div>
 
-        <!-- <div class="row">
+        <!--Old Firebase
+         <div class="row">
             <div class="col-md-12 mt-md-3" id="firebaseLatestRecord">
                 <strong>Latest Search Results: </strong>
                 <span></span>
@@ -97,8 +100,10 @@
                 <strong>Selections: </strong>
                 <span id="firebaseSelection"></span>
             </div> 
-        </div> -->
+        </div> 
+        -->
 
+        <!--Top 5 List Output-->
         <div class="row" id="checked">
             <div id="restaurant" class="col-md-2 offset-md-1 topList">
                 <h6>TOP 5 - RESTAURANTS</h6>
@@ -170,7 +175,7 @@
                                 </div>
 
                                 <div class="form-check col-md-3  offset-md-1 ">
-                                    <input class="form-check-input" type="checkbox" value="lodging" id="formBarCheckbox">
+                                    <input class="form-check-input" type="checkbox" value="hotels" id="formBarCheckbox">
                                     <label class="form-check-label" for="formBarCheckbox">
                                         <img src="assets/images/lodging-2.png"> Hotels
                                     </label>
@@ -179,7 +184,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-check col-md-3 offset-md-3">
-                                    <input class="form-check-input" type="checkbox" value="gas_station" id="formGasCheckbox">
+                                    <input class="form-check-input" type="checkbox" value="gas station" id="formGasCheckbox">
                                     <label class="form-check-label" for="formGasCheckbox">
                                         <img src="assets/images/gas.png"> Gas
                                     </label>
@@ -245,7 +250,7 @@
                 <div class="modal-footer">
                     <!--<button type="button" class="btn btn-primary">Save changes</button>-->
                     <button type="button" class="btn btn-secondary" id="modalReloadCloseButton" data-dismiss="modal">Yes, Close Website</button>
-                    <button type="button" class="btn btn-primary" id="modalReloadButton" href="#myModalPageLoad">No, Reload Window</button>
+                    <button type="button" class="btn btn-primary" id="modalReloadButton">No, Reload Window</button>
                 </div>
             </div>
         </div>

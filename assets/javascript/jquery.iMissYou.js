@@ -13,13 +13,13 @@
         define(['jquery'], factory);
     } else if (typeof module === 'object' && module.exports) {
         // Node/CommonJS
-        module.exports = function( root, jQuery ) {
-            if ( jQuery === undefined ) {
+        module.exports = function (root, jQuery) {
+            if (jQuery === undefined) {
                 // require('jQuery') returns a factory that requires window to
                 // build a jQuery instance, we normalize how we use modules
                 // that require this pattern but the window provided is a noop
                 // if it's defined (how jquery works)
-                if ( typeof window !== 'undefined' ) {
+                if (typeof window !== 'undefined') {
                     jQuery = require('jquery');
                 }
                 else {
@@ -39,25 +39,25 @@
     $.iMissYou = function (options) {
 
         // Options
-        var opts = $.extend( {}, $.iMissYou.defaults, options),
+        var opts = $.extend({}, $.iMissYou.defaults, options),
             origTitle = document.title,
             favicon = $('head').find('link[rel$="icon"]');
         var origFavicon = favicon.attr("href");
 
 
         // Preload favicon
-        if(opts.favicon.enabled)
+        if (opts.favicon.enabled)
             preloadFavicon();
 
         // Watch for visibilitychange event
-        $(document).bind("visibilitychange", function(){
+        $(document).bind("visibilitychange", function () {
 
             // Change title
             $(document).prop('title', (document.hidden) ? opts.title : origTitle);
 
             // Change favicon too ?
-            if(opts.favicon.enabled){
-                if($(document).prop('hidden'))
+            if (opts.favicon.enabled) {
+                if ($(document).prop('hidden'))
                     changeFavicon();
                 else
                     revertFavicon();
@@ -82,7 +82,7 @@
         title: "I Miss you !",
         favicon: {
             enabled: true,
-            src:'iMissYouFavicon.ico'
+            src: 'iMissYouFavicon.ico'
         }
     };
 
