@@ -81,7 +81,9 @@
                 <div id="firebaseSelection1"></div>
                 <div id="firebaseSelection2"></div>
                 <div id="firebaseSelection3"></div>
-                <divp id="firebaseSelection4">
+                <div id="firebaseSelection4"></div>
+                <br>
+                <button type="button" class="btn btn-light" id="searchReloadButton">Reload Search</button>
             </div>
         </div>
 
@@ -105,19 +107,19 @@
 
         <!--Top 5 List Output-->
         <div class="row" id="checked">
-            <div id="restaurant" class="col-md-2 offset-md-1 topList">
+            <div id="restaurant" class="col-md topList">
                 <h6>TOP 5 - RESTAURANTS</h6>
             </div>
-            <div id="bars" class="col-md-2 topList">
+            <div id="bars" class="col-md topList">
                 <h6>TOP 5 - BARS</h6>
             </div>
-            <div id="gas" class="col-md-2 topList">
+            <div id="gas" class="col-md topList">
                 <h6> TOP 5 - GAS STATIONS </h6>
             </div>
-            <div id=parking class="col-md-2 topList">
+            <div id=parking class="col-md topList">
                 <h6>TOP 5 - PARKING </h6>
             </div>
-            <div id="hotel" class="col-md-2 topList">
+            <div id="hotel" class="col-md topList">
                 <h6> TOP 5 - HOTELS </h6>
             </div>
         </div>
@@ -200,7 +202,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" id="modalCloseButton" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" id="modalCloseButton">Close</button>
                     <button type="button" class="btn btn-primary" id="modalSummitButton">Submit</button>
                 </div>
             </div>
@@ -225,7 +227,7 @@
                 </div>
                 <div class="modal-footer">
                     <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close Page</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -249,8 +251,8 @@
                 </div>
                 <div class="modal-footer">
                     <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-                    <button type="button" class="btn btn-secondary" id="modalReloadCloseButton" data-dismiss="modal">Yes, Close Website</button>
-                    <button type="button" class="btn btn-primary" id="modalReloadButton">No, Reload Window</button>
+                    <button type="button" class="btn btn-secondary" id="modalReloadCloseButton">Yes, Close Website</button>
+                    <button type="button" class="btn btn-warning" id="modalReloadButton">No, Reload Window</button>
                 </div>
             </div>
         </div>
