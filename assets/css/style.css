@@ -23,21 +23,26 @@ body {
     font-weight: 900;
 }
 
-.modalPageLoadLabel {
+#modalPageLoadLabel {
     font-weight: bold;
 }
 
-.topList {
-    border-right: groove;
+#modalPageAlertLabel {
+    font-weight: bold;
 }
 
-#checked {
+#modalPageReloadLabel {
+    font-weight: bold; 
+}
+
+.topList {
     background-color: #efefef;
+    border-right: groove;
 }
 
 #informationLine {
     background-color: #efefef;
-    align-content: center;
+    border: ridge;
 }
 
 #firebaseLatestRecord {
@@ -50,6 +55,10 @@ body {
 .mt-md-2 h6 {
     text-align: center;
     font-weight: bold;
+}
+
+.divHidden {
+	display:none;   
 }
 
 /*title*/

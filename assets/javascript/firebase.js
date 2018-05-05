@@ -44,7 +44,11 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
 
     $("#firebaseLocation").text(latestEntry.location);
     $("#firebaseDistance").text((latestEntry.distance) / 1000);
-    $("#firebaseSelection").text(latestEntry.selection);
+    $("#firebaseSelection0").text(latestEntry.selection[0]);
+    $("#firebaseSelection1").text(latestEntry.selection[1]);
+    $("#firebaseSelection2").text(latestEntry.selection[2]);
+    $("#firebaseSelection3").text(latestEntry.selection[3]);
+    $("#firebaseSelection4").text(latestEntry.selection[4]);
 
 }, function (errorObject) {
     console.log("Errors handled: " + errorObject.code);
@@ -56,7 +60,8 @@ function array2StringFB() {
     $('.checkboxChoices input[type="checkbox"]:checked').each(function () {
         userSearchSeletionsArray.push($(this).val());
     });
-    userSearchSeletionsArray.toString();
+    //userSearchSeletionsArray.toString();
     //console.log("String: " + userSearchSeletionsArray.toString());
-    return userSearchSeletionsArray.toString();
+    //return userSearchSeletionsArray.toString();
+    return userSearchSeletionsArray;
 }

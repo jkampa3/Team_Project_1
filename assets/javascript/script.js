@@ -33,19 +33,22 @@ $(document).ready(function () {
 		let cty = $('#formCityZipInput').val()
 		let chckd = $('.checkboxChoices input[type="checkbox"]:checked');
 		if ((chckd.length > 0) && (cty)) {
-			$('#myModalPageLoad').modal('hide');
+			$("#myModalPageLoad").modal('hide');
 			dumpInArray();
 		} else {
-			alert("Please enter a city name, and check at least (1) item.");
+			//alert("Please enter a city name, and check at least (1) item.");
+			$("#myModalAlert").modal('toggle');
+			$("#myModalAlert").addClass('animated zoomIn');
 		}
 		weatherAPICall();
+		$("#mainPageID").removeClass("divHidden");
 	});
 
 
 	//checkbox array for Google Search
 	function dumpInArray() {
 		$('.checkboxChoices input[type="checkbox"]:checked').each(function () {
-			$('#myModalPageLoad').modal('hide');
+			$("#myModalPageLoad").modal('hide');
 			type.push($(this).val());
 		});
 		console.log(type);
