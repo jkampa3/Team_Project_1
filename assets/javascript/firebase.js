@@ -40,10 +40,10 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
     //console.log(latestEntry.distance);
     //console.log(latestEntry.selection);
 
-    $("#searchedCity").text(latestEntry.location);
+    //$("#searchedCity").text(latestEntry.location);
 
     $("#firebaseLocation").text(latestEntry.location);
-    $("#firebaseDistance").text((latestEntry.distance) / 10);
+    $("#firebaseDistance").text((latestEntry.distance) / 1000);
     $("#firebaseSelection").text(latestEntry.selection);
 
 }, function (errorObject) {

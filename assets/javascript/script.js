@@ -4,7 +4,7 @@ $(document).ready(function () {
 	var ilat;
 	var ilng;
 	var googleapiKey = "AIzaSyBAhNxc8BbsIMC5tFTNUSADF8vhSiNxXmA";
-	var iradius = 5000;
+	var iradius;
 	var type = [];
 	var locationURL;
 	var bars = [];
@@ -29,6 +29,7 @@ $(document).ready(function () {
 	//modal submit function
 	$("#modalSummitButton").on("click", function (e) {
 		e.preventDefault();
+		iradius= $("#formDistanceInput").val();
 		let cty = $('#formCityZipInput').val()
 		let chckd = $('.checkboxChoices input[type="checkbox"]:checked');
 		if ((chckd.length > 0) && (cty)) {
@@ -92,14 +93,13 @@ $(document).ready(function () {
 		};
 		map = new google.maps.Map(document.getElementById('map'), {
 			center: pyrmont,
-			zoom: 14
+			zoom: 10,
+			mapTypeId: 'terrain'
 		});
 
 		if (typeof (lats) !== "undefined") {
 
 			for (var i = 0; i < lats.length; i++) {
-				var infoWindow = new google.maps.InfoWindow();
-
 				let ltln = {
 					lat: parseFloat(lats[i]),
 					lng: parseFloat(lngs[i])
@@ -107,7 +107,7 @@ $(document).ready(function () {
 				var nameE = name[i];
 				var addressE = address[i];
 				var ratingE = rating[i];
-				var testing = 0
+				 
 				//adding the icons onto the map of each type
 				var classifications = classType[i];
 
@@ -124,22 +124,40 @@ $(document).ready(function () {
 				} else {
 					alert("no match");
 				}
-				var windowInfo = "<p><strong>Name:</strong> " + name[i] + "</p>" +
-					"<p><strong>Address:</strong> " + address[i] + "</p>" +
-					"<p><strong>Rating:</strong> " + rating[i] + "</p>";
+				
+				infoData(name[i], address[i], rating[i], ltln);
+			}//for loop
 
+			function infoData (name, address, rating, ltln)  {
+				var  windowInfo = "<p class='infoWindows'><strong>Name:</strong> "+  name + "<br>"+
+					'<strong>Address:</strong> '+ address  + "<br>"+ 
+					'<strong>Rating:</strong> '+ rating  +"</p>";
+
+				var infoWindow = new google.maps.InfoWindow({
+					maxWidth: 150
+				});
 				var marker = new google.maps.Marker({
 					position: ltln,
 					map: map,
 					icon: imageicon
 				});
 				marker.addListener('click', function () {
+					
 					infoWindow.setContent(windowInfo);
 					infoWindow.open(map, marker);
+					infoWindow.maxWidth(30);
 				});
-
 			}
 		}
+
+
+
+
+
+
+
+
+
 	}; //end of map
 
 	// service request
@@ -336,19 +354,19 @@ $(document).ready(function () {
 		$('#checked input[type="checkbox"]:checked').each(function () {
 			longs.push($(this).attr("data-lng"));
 		})
-		$('#checked input[type="checkbox"]:checked').each(function () {
+	    $('#checked input[type="checkbox"]:checked').each(function(){
 			classType.push($(this).attr("data-"));
 		})
-		$('#checked input[type="checkbox"]:checked').each(function () {
+	    $('#checked input[type="checkbox"]:checked').each(function(){
 			name.push($(this).attr("data-name"));
 		})
-		$('#checked input[type="checkbox"]:checked').each(function () {
+	    $('#checked input[type="checkbox"]:checked').each(function(){
 			address.push($(this).attr("data-address"));
 		})
-		$('#checked input[type="checkbox"]:checked').each(function () {
+	    $('#checked input[type="checkbox"]:checked').each(function(){
 			rating.push($(this).attr("data-rating"));
 		})
-
+		
 
 		if (lats.length > 0) {
 			initMap(lats, longs, classType, name, address, rating);
