@@ -83,11 +83,11 @@ $(document).ready(function () {
 		//idea here: reload previous search:
 		//current bug: issue with .empty
 		//$("#mainPageID").addClass("divHidden");
-		//$("#restaurant").empty;
-		//$("#bars").empty;
-		//$("#gas").empty;
-		//$("#parking").empty;
-		//$("#hotel").empty;
+		//$("#restaurant").empty();
+		//$("#bars").empty();
+		//$("#gas").empty();
+		//$("#parking").empty();
+		//$("#hotel").empty();
 		//$("#myModalPageLoad").modal();
 		location.reload();
 	});
