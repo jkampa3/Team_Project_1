@@ -18,9 +18,28 @@ body {
 }
  
 .results {
-    color: rgb(92, 6, 25);
-    font-size: 1em;
+    color: rgb(34, 13, 13);
+    font-size: 15px;
     font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+h6 {
+    border: 2px solid lightgray;
+    background-color: rgb(113, 134, 155);
+    text-shadow: px 1px black;
+    color: white;
+    font-size: 15px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+} 
+
+.iconimages {
+    margin-left: 0px;
+}
+
+#restaurant, #bars, #gas, #parking, #hotel {
+    padding: 0;   
 }
 
 #modalPageLoadLabel {
