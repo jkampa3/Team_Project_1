@@ -61,6 +61,12 @@ body {
 	display:none;   
 }
 
+
+.floatleft {
+    float: left;
+    margin-right: 4px;
+}
+
 /*title*/
 .pageHeader {
     position: relative;

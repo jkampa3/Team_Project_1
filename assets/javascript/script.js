@@ -21,6 +21,16 @@ $(document).ready(function () {
 	var iconHotel = "assets/images/lodging-2.png";
 	var iconRestaurant = "assets/images/restaurant.png";
 	var imageicon;
+	var lats = [];
+	var longs = [];
+	var classType = [];
+	var name = [];
+	var address = [];
+	var rating = [];
+	var counter = 0;
+	var placeURL = [];
+	var placeimg = [];
+	var placecontact = [];
 
 
 	//modal load function
@@ -29,7 +39,7 @@ $(document).ready(function () {
 	//modal submit function
 	$("#modalSummitButton").on("click", function (e) {
 		e.preventDefault();
-		iradius= $("#formDistanceInput").val();
+		iradius = $("#formDistanceInput").val();
 		let cty = $('#formCityZipInput').val()
 		let chckd = $('.checkboxChoices input[type="checkbox"]:checked');
 		if ((chckd.length > 0) && (cty)) {
@@ -87,8 +97,9 @@ $(document).ready(function () {
 
 		});
 	};
+
 	// Initialyze google places call
-	function initMap(lats, lngs, classType, name, address, rating) {
+	function initMap(lats, lngs, classType, name, address, rating, placeURL, placeimg, placecontact) {
 
 		pyrmont = {
 			lat: ilat,
@@ -96,7 +107,7 @@ $(document).ready(function () {
 		};
 		map = new google.maps.Map(document.getElementById('map'), {
 			center: pyrmont,
-			zoom: 10,
+			zoom: 11,
 			mapTypeId: 'terrain'
 		});
 
@@ -107,10 +118,7 @@ $(document).ready(function () {
 					lat: parseFloat(lats[i]),
 					lng: parseFloat(lngs[i])
 				}
-				var nameE = name[i];
-				var addressE = address[i];
-				var ratingE = rating[i];
-				 
+
 				//adding the icons onto the map of each type
 				var classifications = classType[i];
 
@@ -127,17 +135,21 @@ $(document).ready(function () {
 				} else {
 					alert("no match");
 				}
-				
-				infoData(name[i], address[i], rating[i], ltln);
+
+				infoData(name[i], address[i], rating[i], ltln, placeURL[i], placecontact[i], placeimg[i]);
 			}//for loop
 
-			function infoData (name, address, rating, ltln)  {
-				var  windowInfo = "<p class='infoWindows'><strong>Name:</strong> "+  name + "<br>"+
-					'<strong>Address:</strong> '+ address  + "<br>"+ 
-					'<strong>Rating:</strong> '+ rating  +"</p>";
+			function infoData(name, address, rating, ltln, placeURL, placecontact, placeimg) {
+				console.log(placeimg);
+				var windowInfo = '<img class="floatleft" src="' + placeimg + '">' +
+					'<p class="infoWindow"><strong>Name:</strong>' + name + '<br>' +
+					'<strong>Address:</strong> ' + address + "<br>" +
+					'<strong>Website:</strong><a href="' + placeURL + '" target="_blank">' + 'Link here' + '</a>' + '<br>' +
+					'<strong>Contact:</strong> ' + placecontact + '<br>' +
+					'<strong>Rating:</strong> ' + rating + '</p>';
 
 				var infoWindow = new google.maps.InfoWindow({
-					maxWidth: 150
+					maxWidth: 300
 				});
 				var marker = new google.maps.Marker({
 					position: ltln,
@@ -145,19 +157,13 @@ $(document).ready(function () {
 					icon: imageicon
 				});
 				marker.addListener('click', function () {
-					
+
 					infoWindow.setContent(windowInfo);
 					infoWindow.open(map, marker);
-					infoWindow.maxWidth(30);
+					infoWindow.maxWidth(300);
 				});
 			}
 		}
-
-
-
-
-
-
 
 
 
@@ -177,7 +183,7 @@ $(document).ready(function () {
 	function fecthrespFacory(itype) {
 		return function (results, status) {
 			if (status === google.maps.places.PlacesServiceStatus.OK) {
-				console.log(results);
+
 				var place_title;
 				var place_address;
 				var place_lan;
@@ -200,7 +206,8 @@ $(document).ready(function () {
 						"address": place_address,
 						"lat": place_lat,
 						"lng": place_lng,
-						"rating": place_rating
+						"rating": place_rating,
+
 					};
 					switch (itype) {
 						case "bars":
@@ -209,31 +216,46 @@ $(document).ready(function () {
 						case "parking":
 							parking.push(placeobj);
 							break;
-						case "lodging":
+						case "hotels":
 							hotels.push(placeobj);
 							break;
 						case "restaurants":
 							restaurants.push(placeobj);
 							break;
-						case "gas_station":
+						case "gas station":
 							gasplaces.push(placeobj);
 							break;
 					};
 				};
 				switch (itype) {
 					case "bars":
+						bars.sort(function (a, b) {
+							return b.rating - a.rating;
+						});
 						barGen(bars);
 						break;
 					case "parking":
+						parking.sort(function (a, b) {
+							return b.rating - a.rating;
+						});
 						parkGen(parking);
 						break;
-					case "lodging":
+					case "hotels":
+						hotels.sort(function (a, b) {
+							return b.rating - a.rating;
+						});
 						hotGen(hotels);
 						break;
 					case "restaurants":
+						restaurants.sort(function (a, b) {
+							return b.rating - a.rating;
+						});
 						restGen(restaurants);
 						break;
-					case "gas_station":
+					case "gas station":
+						gasplaces.sort(function (a, b) {
+							return b.rating - a.rating;
+						});
 						gasGen(gasplaces);
 						break;
 				};
@@ -242,7 +264,6 @@ $(document).ready(function () {
 	}
 
 	function restGen(obj) {
-		console.log(obj);
 		let count = 1;
 		for (var x = 0; x < 5; x++) {
 			let p = $("<p>");
@@ -255,6 +276,7 @@ $(document).ready(function () {
 			inp.attr("class", "chkinpt");
 			inp.attr("data-lat", obj[x].lat);
 			inp.attr("data-lng", obj[x].lng);
+			inp.attr("place_id", obj[x].place_id);
 			p.prepend(inp);
 			p.append(" " + count++ + ". " + obj[x].title);
 			p.attr("class", "col-sm results");
@@ -275,6 +297,7 @@ $(document).ready(function () {
 			inp.attr("class", "chkinpt");
 			inp.attr("data-lat", obj[x].lat);
 			inp.attr("data-lng", obj[x].lng);
+			inp.attr("place_id", obj[x].place_id);
 			p.prepend(inp);
 			p.append(" " + count++ + ". " + obj[x].title);
 			p.attr("class", "col-sm results");
@@ -282,6 +305,7 @@ $(document).ready(function () {
 		}
 
 	}
+
 	function parkGen(obj) {
 		let count = 1;
 		for (var x = 0; x < 5; x++) {
@@ -295,6 +319,7 @@ $(document).ready(function () {
 			inp.attr("class", "chkinpt");
 			inp.attr("data-lat", obj[x].lat);
 			inp.attr("data-lng", obj[x].lng);
+			inp.attr("place_id", obj[x].place_id);
 			p.prepend(inp);
 			p.append(" " + count++ + ". " + obj[x].title);
 			p.attr("class", "col-sm results");
@@ -302,6 +327,7 @@ $(document).ready(function () {
 		}
 
 	}
+
 	function hotGen(obj) {
 		let count = 1;
 		for (var x = 0; x < 5; x++) {
@@ -315,6 +341,7 @@ $(document).ready(function () {
 			inp.attr("class", "chkinpt");
 			inp.attr("data-lat", obj[x].lat);
 			inp.attr("data-lng", obj[x].lng);
+			inp.attr("place_id", obj[x].place_id);
 			p.prepend(inp);
 			p.append(" " + count++ + ". " + obj[x].title);
 			p.attr("class", "col-sm results");
@@ -323,7 +350,6 @@ $(document).ready(function () {
 	}
 
 	function gasGen(obj) {
-		console.log(obj, "gas object")
 		let count = 1;
 		let id = 0;
 		for (var x = 0; x < 5; x++) {
@@ -337,43 +363,54 @@ $(document).ready(function () {
 			inp.attr("class", "chkinpt");
 			inp.attr("data-lat", obj[x].lat);
 			inp.attr("data-lng", obj[x].lng);
+			inp.attr("place_id", obj[x].place_id);
 			p.prepend(inp);
 			p.append(" " + count++ + ". " + obj[x].title);
 			p.attr("class", "col-sm results");
 			$("#gas").append(p);
 		}
 	}
+
 	$("#mapSub").on("click", function (e) {
 		e.preventDefault();
-		var lats = [];
-		var longs = [];
-		var classType = [];
-		var name = [];
-		var address = [];
-		var rating = [];
+		lats = [];
+		longs = [];
+		classType = [];
+		name = [];
+		address = [];
+		rating = [];
+		placeimg = [];
+		placecontact = [];
+		placeURL = [];
+		counter = 0;
 		$('#checked input[type="checkbox"]:checked').each(function () {
 			lats.push($(this).attr("data-lat"));
-		});
-		$('#checked input[type="checkbox"]:checked').each(function () {
 			longs.push($(this).attr("data-lng"));
-		})
-	    $('#checked input[type="checkbox"]:checked').each(function(){
 			classType.push($(this).attr("data-"));
-		})
-	    $('#checked input[type="checkbox"]:checked').each(function(){
 			name.push($(this).attr("data-name"));
-		})
-	    $('#checked input[type="checkbox"]:checked').each(function(){
 			address.push($(this).attr("data-address"));
-		})
-	    $('#checked input[type="checkbox"]:checked').each(function(){
 			rating.push($(this).attr("data-rating"));
-		})
-		
-
-		if (lats.length > 0) {
-			initMap(lats, longs, classType, name, address, rating);
-		}
+			counter = lats.length - 1;
+			var request = {
+				placeId: $(this).attr("place_id")
+			}
+			console.log(request);
+			var service = new google.maps.places.PlacesService(map);
+			service.getDetails(request, getplacedetails(lats, longs, classType, name, address, rating, placeURL, placeimg, placecontact, counter));
+		});
 	});
+
+	// This gets details for each place ID ( Website address, phone number & image on clikc only)
+	function getplacedetails(lats, longs, classType, name, address, rating, placeURL, placeimg, placecontact, counter) {
+		return function (place, status) {
+			if (status == google.maps.places.PlacesServiceStatus.OK) {
+				placeURL[counter] = place.website;
+				placecontact[counter] = place.formatted_phone_number;
+				placeimg[counter] = place.photos[0].getUrl({ 'maxWidth': 100, 'maxHeight': 100 });
+				console.log(placeimg, placecontact, placeURL);
+				initMap(lats, longs, classType, name, address, rating, placeURL, placeimg, placecontact);
+			}
+		}
+	}
 
 });

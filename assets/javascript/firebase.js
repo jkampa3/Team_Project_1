@@ -61,7 +61,7 @@ function array2StringFB() {
         userSearchSeletionsArray.push($(this).val());
     });
     //userSearchSeletionsArray.toString();
-    //console.log("String: " + userSearchSeletionsArray.toString());
+    //console.log("String: " + userSearchSeletionsArray);
     //return userSearchSeletionsArray.toString();
     return userSearchSeletionsArray;
 }
